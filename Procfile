@@ -1,1 +1,1 @@
-worker: python -u index.html
+web: npx serve -s .
