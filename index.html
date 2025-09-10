@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trabalho Final – Algoritmos Gráficos</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="app">
+    <div class="main-column">
+      <div id="canvas-wrapper" class="canvas-wrap" aria-label="Área de desenho">
+        <canvas id="tela"></canvas>
+      </div>
+      <div id="coordenadas-display" class="coordinates-info">
+        <p>Nenhum ponto selecionado.</p>
+      </div>
+    </div>
+
+    <aside class="sidebar" aria-label="Painel de controles">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="algoritmos">Algoritmos</button>
+        <button class="tab-btn" data-tab="formas">Formas</button>
+        <button class="tab-btn" data-tab="preenchimento">Preenchimento</button>
+        <button class="tab-btn" data-tab="transformacoes">Transformações</button>
+      </div>
+
+      <div class="tab-content-wrapper">
+        <div id="algoritmos" class="tab-content active">
+          <button class="btn" id="bresenham-btn" type="button" title="Clique em 2 pontos no canvas para definir o início e o fim da reta.">Desenhar Reta</button>
+
+          <button class="btn" id="circle-btn" type="button" title="Clique em 1 ponto (centro) e informe o raio, ou clique em 2 pontos (centro e borda).">Desenhar Círculo</button>
+          <div class="input-group">
+            <label for="radius-input">Raio</label>
+            <input type="number" id="radius-input" placeholder="Ex: 20">
+          </div>
+
+          <button class="btn" id="bezier-btn" type="button" title="Clique em 2 pontos (início e fim) e digite 1 ou 2 pontos de controle.">Desenhar Curva</button>
+          <div class="input-group">
+            <label for="control-points-input">Pontos de Controle (para 2, use ';')</label>
+            <input type="text" id="control-points-input" placeholder="Ex: 10,20; -15,30">
+          </div>
+
+          <button class="btn" id="polygon-btn" type="button" title="Informe o nº de vértices e clique para ativar. Depois selecione os pontos.">Desenhar Polígono</button>
+          <div class="input-group">
+            <label for="vertex-count-input">Nº de Vértices</label>
+            <input type="number" id="vertex-count-input" placeholder="Mínimo 3" min="3">
+          </div>
+
+          <hr class="divider">
+
+          <button class="btn" id="line-clip-btn" title="Clique para ativar e depois selecione 2 pontos no canvas para definir a janela de recorte.">Recortar Desenho</button>
+
+          <hr class="divider">
+
+          <div class="input-group">
+            <label for="cube-size-input">Tamanho do Cubo</label>
+            <input type="number" id="cube-size-input" value="20">
+          </div>
+          <button class="btn" id="ortho-proj-btn">Projeção Ortogonal</button>
+          <button class="btn" id="persp-proj-btn">Projeção Perspectiva</button>
+
+          <div class="spacer"></div>
+          <button class="btn limpar-btn" type="button">Limpar Tela</button>
+        </div>
+
+        <div id="formas" class="tab-content">
+          <button class="btn" id="shape-circle-btn">Círculo Perfeito</button>
+          <button class="btn" id="shape-curve-btn">Curva Padrão</button>
+          <button class="btn" id="shape-polygon-btn">Polígono Regular (6V)</button>
+          <button class="btn" id="shape-complex-polygon-btn">Polígono Complexo (6V)</button>
+          <div class="spacer"></div>
+          <button class="btn limpar-btn" type="button">Limpar Tela</button>
+        </div>
+
+        <div id="preenchimento" class="tab-content">
+          <button class="btn" id="recursive-fill-btn" title="Clique para ativar e depois clique dentro de uma forma para preenchê-la.">Preenchimento Recursivo</button>
+          <button class="btn" id="scanline-fill-btn" title="Clique para ativar e depois clique dentro de uma forma para preenchê-la.">Preenchimento por Varredura</button>
+          <div class="spacer"></div>
+          <button class="btn limpar-btn" type="button">Limpar Tela</button>
+        </div>
+
+        <div id="transformacoes" class="tab-content">
+          <button class="btn" id="translate-btn" title="Aplica a translação ao último polígono desenhado.">Transladar</button>
+          <div class="input-group">
+            <label>Deslocamento</label>
+            <div class="input-row">
+              <input type="number" id="translate-x-input" placeholder="dx">
+              <input type="number" id="translate-y-input" placeholder="dy">
+            </div>
+          </div>
+
+          <button class="btn" id="rotate-btn" title="Ativa o modo de seleção. Clique perto de um vértice para usá-lo como pivô.">Rotacionar</button>
+          <div class="input-group">
+            <label for="angle-input">Ângulo (graus)</label>
+            <input type="number" id="angle-input" placeholder="Ex: 90">
+          </div>
+
+          <button class="btn" id="scale-btn" title="Ativa o modo de seleção. Clique perto de um vértice para usá-lo como ponto fixo.">Escalar</button>
+          <div class="input-group">
+            <label>Fator de Escala</label>
+            <div class="input-row">
+              <input type="number" id="scale-x-input" placeholder="sx" value="1">
+              <input type="number" id="scale-y-input" placeholder="sy" value="1">
+            </div>
+          </div>
+
+          <div class="spacer"></div>
+          <button class="btn limpar-btn" type="button">Limpar Tela</button>
+        </div>
+      </div>
+
+      <div class="footer">Trabalho de Computação Gráfica</div>
+    </aside>
+  </div>
+
+  <script defer src="app.js"></script>
+</body>
+</html>
